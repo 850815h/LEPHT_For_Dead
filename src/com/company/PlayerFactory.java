@@ -5,64 +5,62 @@ import java.util.Random;
 
 public class PlayerFactory {
 
-    private Random skill = new Random();
-    private ArrayList<String> firstNames = new ArrayList<>();
-    private ArrayList<String> lastNames = new ArrayList<>();
+    static Random random = new Random();
+    static String[] firstNames = {"Bamse","Tomten","Lennart","Hassan","Hulken","Emanuel","Leona","Pontus","Tobias","Mimmi","Fantomen","Catwoman","Pluto","Piff","Puff","Kalle","Musse","Arya","Cliff"
+    ,"Arnold","Zlatan","WonderWoman","Betty Boop","Khaleesi","Kingslayer"};
 
-    private void addFirstNames() {
-        firstNames.add("Bamse");
-        firstNames.add("Tomten");
-        firstNames.add("Lennart");
-        firstNames.add("Hassan");
-        firstNames.add("Hulken");
-        firstNames.add("Emanuel");
-        firstNames.add("Leona");
-        firstNames.add("Pontus");
-        firstNames.add("Tobias");
-        firstNames.add("Mimmi");
-        firstNames.add("Fantomen");
-        firstNames.add("Catwoman");
-        firstNames.add("Pluto");
-        firstNames.add("Piff");
-        firstNames.add("Puff");
-        firstNames.add("Kalle");
-        firstNames.add("Musse");
-        firstNames.add("Ali");
-        firstNames.add("Cliff");
-        firstNames.add("Arnold");
-        firstNames.add("Zlatan");
-        firstNames.add("WonderWoman");
-        firstNames.add("Betty Boop");
-        firstNames.add("Tom");
-        firstNames.add("Jerry");
+    static String[] lastNames = {"McRib","Steel","Targaryan","Stallone","Armstrong","Svensson","Hussein","Strong","Schwarzenegger","Stålnacke","af von Knapp","Terminator","Jonsson","BigMac",
+    "Maradona","Köttfärs","Baba","Beerpong","Wordfeud","Candy Crush","Messi","Ronaldo","Ibrahimovic","Silverhjelm","Lingongrova"};
+
+
+    public static String createName() {
+        String first = firstNames[random.nextInt(firstNames.length)];
+        String last = lastNames[random.nextInt(lastNames.length)];
+        String name = first + " " + last;
+        return name;
     }
 
-    private void addLastName() {
-        lastNames.add("McRib");
-        lastNames.add("Steel");
-        lastNames.add("Diakite");
-        lastNames.add("Stallone");
-        lastNames.add("Armstrong");
-        lastNames.add("Svensson");
-        lastNames.add("Hussein");
-        lastNames.add("Strong");
-        lastNames.add("Schwarzenegger");
-        lastNames.add("Stålnacke");
-        lastNames.add("af von Knapp");
-        lastNames.add("Terminator");
-        lastNames.add("Jonsson");
-        lastNames.add("BigMac");
-        lastNames.add("Maradona");
-        lastNames.add("Köttfärs");
-        lastNames.add("Baba");
-        lastNames.add("Beerpong");
-        lastNames.add("Wordfeud");
-        lastNames.add("Candy Crush");
-        lastNames.add("Messi");
-        lastNames.add("Ronaldo");
-        lastNames.add("Ibrahimovic");
-        lastNames.add("Silverhjelm");
-        lastNames.add("Lingongrova");
+   public static Defender createDefender() {
+        int speed = random.nextInt(2) +1;
+        int dribbling = random.nextInt(100);
+        int passing = random.nextInt(100);
+        int breaking = random.nextInt(100);
+        Defender tempDefender = new Defender(createName(), speed, dribbling, passing, breaking);
+        return tempDefender;
+   }
+
+    public static Midfielder createMidfielder() {
+        int speed = random.nextInt(2) +1;
+        int dribbling = random.nextInt(100);
+        int passing = random.nextInt(100);
+        int breaking = random.nextInt(100);
+        Midfielder tempMidfielder = new Midfielder(createName(), speed, dribbling, passing, breaking);
+        return tempMidfielder;
     }
 
+    public static Forward createForward() {
+        int speed = random.nextInt(2) +1;
+        int dribbling = random.nextInt(100);
+        int passing = random.nextInt(100);
+        int breaking = random.nextInt(100);
+        int shooting = random.nextInt(100);
+        Forward tempForward = new Forward(createName(), speed, dribbling, passing, breaking, shooting);
+        return tempForward;
+    }
+
+    public static ArrayList<Player> createTeam() {
+        ArrayList<Player> tempTeam = new ArrayList<>();
+
+        for (int i = 0; i < 4; i++) {
+            tempTeam.add(createDefender());
+        }
+        for (int i = 0; i < 4; i++) {
+            tempTeam.add(createMidfielder());
+        }
+        for (int i = 0; i < 2; i++) {
+            tempTeam.add(createForward());
+        }
+        tempTeam.add(new Goalkeeper(createName(), 1, 0, 0, random.nextInt(80), random.nextInt(50)+50));
+        return tempTeam;
+    }
 }
