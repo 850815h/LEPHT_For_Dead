@@ -5,8 +5,10 @@ import java.util.Scanner;
 public class FootballSimulator {
 
     Scanner scanner = new Scanner(System.in);
+    private int actionSpeed = 0;
+    Thread thread = new Thread();
 
-    public void start() {
+    public void start() throws InterruptedException {
 
         do {
             System.out.println("Välkommen till FotbollsSimulatorn!\n");
@@ -45,7 +47,7 @@ public class FootballSimulator {
                     showPlayerStats();
                     break;
                 case 5:
-                    showSettings();
+                    changeSettings();
                     break;
                 case 0:
                     break;
@@ -69,7 +71,7 @@ public class FootballSimulator {
 
     }
 
-    public void showSettings(){
+    public void changeSettings(){
         
     }
 }
