@@ -7,10 +7,13 @@ public abstract class Player {
     private int passing;
     private int dribbling;
     private int breaking;
-    private int shooting;
 
     public Player(String name, int speed, int dribbling, int passing, int breaking){
         this.name = name;
+        this.speed = speed;
+        this.dribbling = dribbling;
+        this.passing = passing;
+        this.breaking = breaking;
     }
 
     public String getName(){
