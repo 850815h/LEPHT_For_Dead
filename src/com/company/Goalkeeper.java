@@ -7,4 +7,8 @@ public class Goalkeeper extends Player{
         super(name, speed, dribbling, passing, breaking);
         this.saving = saving;
     }
+
+    public int getSaving() {
+        return saving;
+    }
 }

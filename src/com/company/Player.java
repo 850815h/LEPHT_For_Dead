@@ -16,6 +16,22 @@ public abstract class Player {
         this.breaking = breaking;
     }
 
+    public int getSpeed() {
+        return speed;
+    }
+
+    public int getPassing() {
+        return passing;
+    }
+
+    public int getDribbling() {
+        return dribbling;
+    }
+
+    public int getBreaking() {
+        return breaking;
+    }
+
     public String getName(){
         return name;
     }

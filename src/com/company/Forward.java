@@ -7,4 +7,8 @@ public class Forward extends Player {
         super(name, speed, dribbling, passing, breaking);
         this.shooting = shooting;
     }
+
+    public int getShooting(){
+        return shooting;
+    }
 }
