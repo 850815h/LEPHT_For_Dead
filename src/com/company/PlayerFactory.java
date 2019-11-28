@@ -64,11 +64,21 @@ public class PlayerFactory {
         return tempTeam;
     }
 
-    public void createLeague() {
-        LeagueTable leagueTable = new LeagueTable();
+    static String [] teamNames = {"Gurras Chark Och Ost", "Gränspolisens FF", "Stinas Kök & Hemtjänst", "Travföreningen i Mellerud", "LCHF IF",
+            "Entusiastiska Lokföreningen", "Benknäckarna", "Postnords Finest"};
+    static ArrayList<Team> teamList = new ArrayList<>();
+
+    public static LeagueTable createLeague() {
+        int teamNr = 0;
+
         for (int i = 0; i < 8; i++) {
-            Team tempTeam = PlayerFactory.createTeam();
-            leagueTable.addTeam(tempTeam);
+            Team tempTeam = new Team(teamNames[teamNr], createTeam();
+            teamList.add(tempTeam);
+            teamNr ++;
+        }
+        LeagueTable leagueTable = new LeagueTable(teamList);
+        return LeagueTable;
+
         }
     }
-}
+
