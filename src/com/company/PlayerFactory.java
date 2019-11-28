@@ -63,4 +63,12 @@ public class PlayerFactory {
         tempTeam.add(new Goalkeeper(createName(), 1, 0, 0, random.nextInt(80), random.nextInt(50)+50));
         return tempTeam;
     }
+
+    public void createLeague() {
+        LeagueTable leagueTable = new LeagueTable();
+        for (int i = 0; i < 8; i++) {
+            Team tempTeam = PlayerFactory.createTeam();
+            leagueTable.addTeam(tempTeam);
+        }
+    }
 }
