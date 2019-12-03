@@ -17,6 +17,8 @@ public class PlayerFactory {
             "Maradona", "Köttfärs", "Baba", "Beerpong", "Wordfeud", "Candy Crush", "Messi", "Ronaldo", "Ibrahimovic", "Silverhjelm", "Lingongrova"};
 
 
+
+
     public static String createName() {
         String first = firstNames[random.nextInt(firstNames.length)];
         String last = lastNames[random.nextInt(lastNames.length)];
@@ -67,7 +69,7 @@ public class PlayerFactory {
         tempTeam.add(new Goalkeeper(createName(), 1, 0, 0, random.nextInt(80), random.nextInt(50) + 50));
         return tempTeam;
     }
-    /*
+
     public static LeagueTable createLeague() {
         int teamNr = 0;
 
@@ -80,5 +82,5 @@ public class PlayerFactory {
         return LeagueTable;
 
         }
-*/    }
+}
 
