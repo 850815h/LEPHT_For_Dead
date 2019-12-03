@@ -4,25 +4,25 @@ import java.util.ArrayList;
 
 public class TeamStats {
 
-    public int points;
-    public int wins;
-    public int losses;
-    public int ties;
-    public int goalScored;
-    public int goalsConceded;
-    public int goalDifference;
-    public int playedMatches;
+    private int points;
+    private int wins;
+    private int losses;
+    private int ties;
+    private int goalScored;
+    private int goalsConceded;
+    private int goalDifference;
+    private int playedMatches;
 
-    public ArrayList<String> summaryOfLastGamesStats = new ArrayList<>();
+    private ArrayList<String> summaryOfLastGamesStats = new ArrayList<>();
 
-    public String pointString;
-    public String winString;
-    public String lossesString;
-    public String tieString;
-    public String goalScoredString;
-    public String goalConcededString;
-    public String goalDifferenceString;
-    public String playedMatchesString;
+    private String pointString;
+    private String winString;
+    private String lossesString;
+    private String tieString;
+    private String goalScoredString;
+    private String goalConcededString;
+    private String goalDifferenceString;
+    private String playedMatchesString;
 
     public TeamStats() {
         updateStats();
