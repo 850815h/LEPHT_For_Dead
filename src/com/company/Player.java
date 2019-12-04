@@ -5,24 +5,24 @@ import java.util.Random;
 public abstract class Player {
     Random random = new Random();
     private String name;
-    private String teamName;
     protected int currentPosition;
     protected int originalPosition;
-    private boolean hasTheBall = false;
+    protected boolean hasTheBall = false;
     protected String position;
     private int speed;
     private int passingAbility;
     private int dribblingAbility;
+    private int shootingAbility;
     private int breakingAbility;
     protected int savingAbility;
     private PlayerStats playerStats;
 
-    public Player(String name, String teamName, String position, int speed, int passingAbility, int dribblingAbility, int breakingAbility, int savingAbility) {
+    public Player(String name, int savingAbility, int speed, int dribblingAbility, int breakingAbility, int passingAbility, String position, int shootingAbility) {
         this.name = name;
-        this.teamName = teamName;
         this.position = position;
         this.speed = speed;
         this.passingAbility = passingAbility;
+        this.shootingAbility = shootingAbility;
         this.dribblingAbility = dribblingAbility;
         this.breakingAbility = breakingAbility;
         this.savingAbility = savingAbility;
@@ -233,6 +233,14 @@ public abstract class Player {
 
     public String toString(){
         return position + ": " + name;
+    }
+
+    public PlayerStats getPlayerStats(){
+        return playerStats;
+    }
+
+    public void setHasTheBall(boolean hasTheBall){
+        this.hasTheBall = hasTheBall;
     }
 
 }
