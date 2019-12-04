@@ -1,49 +1,31 @@
 package com.company;
 
+import java.util.Random;
+
 public abstract class Player {
 
+    protected Random random = new Random();
     private String name;
+    protected int currentPosition;
+    protected int originalPosition;
+    private boolean hasTheBall = false;
     protected String position;
     private int speed;
     private int passing;
     private int dribbling;
     private int breaking;
-    private int printStats;
+    protected int saving;
+    private PlayerStats playerStats;
 
-    public Player(String name, int speed, int dribbling, int passing, int breaking, String position){
+    public Player(String name, String teamName, String position, int speed, int passing, int dribbling, int breaking, int saving) {
         this.name = name;
-        this.speed = speed;
-        this.dribbling = dribbling;
-        this.passing = passing;
-        this.breaking = breaking;
         this.position = position;
+        this.speed = speed;
+        this.passing = passing;
+        this.dribbling = dribbling;
+        this.breaking = breaking;
+        this.saving = saving;
+        this.playerStats = new PlayerStats(this);
     }
 
-    public int getPrintStats(){
-        return printStats;
-    }
-
-    public int getSpeed() {
-        return speed;
-    }
-
-    public int getPassing() {
-        return passing;
-    }
-
-    public int getDribbling() {
-        return dribbling;
-    }
-
-    public int getBreaking() {
-        return breaking;
-    }
-
-    public String getName(){
-        return name;
-    }
-
-    public String getPosition(){
-        return position;
-    }
 }
