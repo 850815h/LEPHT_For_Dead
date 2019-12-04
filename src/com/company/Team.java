@@ -16,11 +16,21 @@ public class Team {
 
     //private TeamStats teamStats = new TeamStats();
     private ArrayList<Player> team;
+    private TeamStats teamStats = new TeamStats();
 
 
-    public Team(String teamName, ArrayList<Player> team) {
+
+    public Team( String teamName, ArrayList<Player> team) {
         this.teamName = teamName;
         this.team = team;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public TeamStats getTeamStats() {
+        return teamStats;
     }
 
     public String toString() {
@@ -34,5 +44,6 @@ public class Team {
     public ArrayList<Player> getTeam() {
         return team;
     }
+
 
 }

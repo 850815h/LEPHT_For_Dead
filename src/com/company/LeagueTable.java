@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class LeagueTable {
 
 
-    private ArrayList<PlayerFactory> league;
+    private ArrayList<Team> league;
 
-    public LeagueTable(ArrayList<PlayerFactory> league){
+    public LeagueTable(ArrayList<Team> league){
 
         this.league = league;
     }
@@ -75,19 +75,19 @@ public class LeagueTable {
         return matchOrder;
     }
 
-    public ArrayList<PlayerFactory> getLeague(){
+    public ArrayList<Team> getLeague(){
         return league;
     }
 
-    public void sortByPoints( TeamStats){
+    public void sortByPoints(){
         league.sort((Team t1, Team t2) -> {
             if (t1.getTeamStats().getPoints() > t2.getTeamStats().getPoints())
                 return -1;
             else if (t1.getTeamStats().getPoints() < t2.getTeamStats().getPoints())
                 return 1;
             else {
-                int goalDif1 = t1.getTeamStats().getGoalDiff();
-                int goalDif2 = t2.getTeamStats().getGoalDiff();
+                int goalDif1 = t1.getTeamStats().getGoalDifference();
+                int goalDif2 = t2.getTeamStats().getGoalDifference();
                 if (goalDif1 > goalDif2)
                     return -1;
                 else if (goalDif2 < goalDif1)
@@ -99,9 +99,9 @@ public class LeagueTable {
 
     public void sortByScoredGoals() {
         league.sort((Team t1, Team t2) -> {
-                    if (t1.getTeamStats().getGoalsScored() > t2.getTeamStats().getGoalsScored())
+                    if (t1.getTeamStats().getGoalScored() > t2.getTeamStats().getGoalScored())
                         return -1;
-                    else if (t1.getTeamStats().getGoalsScored() < t2.getTeamStats().getGoalsScored())
+                    else if (t1.getTeamStats().getGoalScored() < t2.getTeamStats().getGoalScored())
                         return 1;
                     return 0;
                 }
@@ -110,9 +110,9 @@ public class LeagueTable {
 
     public void sortByGoalDiff() {
         league.sort((Team t1, Team t2) -> {
-                    if (t1.getTeamStats().getGoalDiff() > t2.getTeamStats().getGoalDiff())
+                    if (t1.getTeamStats().getGoalDifference() > t2.getTeamStats().getGoalDifference())
                         return -1;
-                    else if (t1.getTeamStats().getGoalDiff() < t2.getTeamStats().getGoalDiff())
+                    else if (t1.getTeamStats().getGoalDifference() < t2.getTeamStats().getGoalDifference())
                         return 1;
                     return 0;
                 }
@@ -132,9 +132,9 @@ public class LeagueTable {
 
     public void sortByGoalsAgainst(){
         league.sort((Team t1, Team t2) -> {
-                    if (t1.getTeamStats().getGoalsLetIn() > t2.getTeamStats().getGoalsLetIn())
+                    if (t1.getTeamStats().getGoalsConceded() > t2.getTeamStats().getGoalsConceded())
                         return -1;
-                    else if (t1.getTeamStats().getGoalsLetIn() < t2.getTeamStats().getGoalsLetIn())
+                    else if (t1.getTeamStats().getGoalsConceded() < t2.getTeamStats().getGoalsConceded())
                         return 1;
                     return 0;
                 }
