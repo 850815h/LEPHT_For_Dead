@@ -3,6 +3,7 @@ package com.company;
 import java.util.Random;
 
 public abstract class Player {
+    Test
     Random random = new Random();
     private String name;
     protected int currentPosition;
