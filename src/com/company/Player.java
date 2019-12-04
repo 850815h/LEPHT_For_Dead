@@ -1,20 +1,22 @@
 package com.company;
 
 public abstract class Player {
+
     private String name;
-    private String position;
+    protected String position;
     private int speed;
     private int passing;
     private int dribbling;
     private int breaking;
     private int printStats;
 
-    public Player(String name, int speed, int dribbling, int passing, int breaking){
+    public Player(String name, int speed, int dribbling, int passing, int breaking, String position){
         this.name = name;
         this.speed = speed;
         this.dribbling = dribbling;
         this.passing = passing;
         this.breaking = breaking;
+        this.position = position;
     }
 
     public int getPrintStats(){
