@@ -7,8 +7,8 @@ public class PlayerFactory {
 
     static String [] teamNames = {"Gurras Chark Och Ost", "Gränspolisens FF", "Stinas Kök & Hemtjänst", "Travföreningen i Mellerud", "LCHF IF",
             "Entusiastiska Lokföreningen", "Benknäckarna", "Postnords Finest"};
-  /*  static ArrayList<Team> teamList = new ArrayList<>();
-*/
+    /*  static ArrayList<Team> teamList = new ArrayList<>();
+     */
     static Random random = new Random();
     static String[] firstNames = {"Bamse", "Tomten", "Lennart", "Hassan", "Hulken", "Emanuel", "Leana", "Pontus", "Tobias", "Mimmi", "Fantomen", "Catwoman", "Pluto", "Piff", "Puff", "Kalle", "Musse", "Arya", "Cliff"
             , "Arnold", "Zlatan", "WonderWoman", "Betty Boop", "Khaleesi", "Kingslayer"};
@@ -16,6 +16,7 @@ public class PlayerFactory {
     static String[] lastNames = {"McRib", "Steel", "Targaryan", "Stallone", "Armstrong", "Svensson", "Hussein", "Strong", "Schwarzenegger", "Stålnacke", "af von Knapp", "Terminator", "Jonsson", "BigMac",
             "Maradona", "Köttfärs", "Baba", "Beerpong", "Wordfeud", "Candy Crush", "Messi", "Ronaldo", "Ibrahimovic", "Silverhjelm", "Lingongrova"};
 
+    private static ArrayList<Team> teamList = new ArrayList<>();
 
     public static String createName() {
         String first = firstNames[random.nextInt(firstNames.length)];
@@ -68,18 +69,29 @@ public class PlayerFactory {
         return tempTeam;
     }
 
-    /*
     public static LeagueTable createLeague() {
         int teamNr = 0;
 
         for (int i = 0; i < 8; i++) {
-            Team tempTeam = new Team(teamNames[teamNr], createTeam();
+            Team tempTeam = new Team(teamNames[teamNr], createTeam());
             teamList.add(tempTeam);
             teamNr ++;
         }
-        LeagueTable leagueTable = new LeagueTable(teamList);
-        return LeagueTable;
 
-        }
-*/    }
+        return (new LeagueTable(teamList));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
 

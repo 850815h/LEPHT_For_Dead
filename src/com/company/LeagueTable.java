@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class LeagueTable {
 
+
     private ArrayList<PlayerFactory> league;
 
     public LeagueTable(ArrayList<PlayerFactory> league){
