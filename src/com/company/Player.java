@@ -7,6 +7,7 @@ public abstract class Player {
     private int passing;
     private int dribbling;
     private int breaking;
+    private int printStats;
 
     public Player(String name, int speed, int dribbling, int passing, int breaking){
         this.name = name;
@@ -14,6 +15,10 @@ public abstract class Player {
         this.dribbling = dribbling;
         this.passing = passing;
         this.breaking = breaking;
+    }
+
+    public int getPrintStats(){
+        return printStats;
     }
 
     public int getSpeed() {

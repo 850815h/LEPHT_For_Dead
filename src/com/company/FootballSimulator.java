@@ -5,24 +5,25 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class FootballSimulator {
-
-    Scanner scanner = new Scanner(System.in);
-    Thread thread = new Thread();
-    LeagueTable leagueTable;
-    ArrayList<int[]> matchOrder;
-    int matchSpeed = 1000;
-    int actionAmount = 150;
+    private Scanner scanner = new Scanner(System.in);
+    private Thread thread = new Thread();
+    private LeagueTable leagueTable;
     public static ArrayList<String> highlights = new ArrayList<>();
+    private ArrayList<int[]> matchOrder;
+    int matchTimeSpeed = 1000;
+    int actionAmount = 150;
     int matchNr;
     Random random = new Random();
 
-    public FootballSimulator(){
+    public FootballSimulator() {
         leagueTable = PlayerFactory.createLeague();
         matchOrder = leagueTable.createMatchOrder();
         matchNr = 0;
+        start();
     }
 
-    public void start() throws InterruptedException {
+    private void start() /*throws InterruptedException*/ {
+
         int userMenuSelectionChoise;
         do {
             System.out.printf("[][][][][][][][][][][][][][][][][][][][][][]\n" +
@@ -47,7 +48,7 @@ public class FootballSimulator {
                     }
                     break;
                 } catch (Exception e) {
-                    System.out.println("\nVänligen ange ett giltigt alternativ (0-5)!");
+                    System.out.println("\nVänligen ange ett giltigt alternativ (0-5) och tryck ENTER!");
                 }
             } while (true);
 
@@ -112,42 +113,42 @@ public class FootballSimulator {
         switch (selection) {
             case 1:
                 for (Player player : leagueTable.getLeague().get(0).getTeam()) {
-                    player.printStats();
+                    player.getPrintStats();
                 }
                 break;
             case 2:
                 for (Player player : leagueTable.getLeague().get(1).getTeam()) {
-                    player.printStats();
+                    player.getPrintStats();
                 }
                 break;
             case 3:
                 for (Player player : leagueTable.getLeague().get(2).getTeam()) {
-                    player.printStats();
+                    player.getPrintStats();
                 }
                 break;
             case 4:
                 for (Player player : leagueTable.getLeague().get(3).getTeam()) {
-                    player.printStats();
+                    player.getPrintStats();
                 }
                 break;
             case 5:
                 for (Player player : leagueTable.getLeague().get(4).getTeam()) {
-                    player.printStats();
+                    player.getPrintStats();
                 }
                 break;
             case 6:
                 for (Player player : leagueTable.getLeague().get(5).getTeam()) {
-                    player.printStats();
+                    player.getPrintStats();
                 }
                 break;
             case 7:
                 for (Player player : leagueTable.getLeague().get(6).getTeam()) {
-                    player.printStats();
+                    player.getPrintStats();
                 }
                 break;
             case 8:
                 for (Player player : leagueTable.getLeague().get(7).getTeam()) {
-                    player.printStats();
+                    player.getPrintStats();
                 }
                 break;
             case 0:
@@ -163,9 +164,37 @@ public class FootballSimulator {
 
     }
 
+    private void delayTimer(double howManySeconds) {
+        double wholeSeconds = howManySeconds * 1000;
+
+        try {
+            thread.sleep((long) wholeSeconds);
+        } catch (Exception e) {
+            System.out.println("TimeLeft");
+        }
+    }
+
     private void exitProgram() {
         System.exit(0);
     }
 
 
 }
+
+/*
+private void welcomeMessage(){
+        System.out.printf(
+                " [][][][][][][][][][][][][][][][][][][][][]\n" +
+                "[][][][][][][][][][][][][][][][][][][][][][]\n" +
+                " []                                      []\n" +
+                " []     V  Ä  L  K  K  O  M  M  E  N     []\n" +
+                " []               T  I  L  L             []\n" +
+                " []                                      []\n" +
+                " [] F o t b o l l s  S i m u l a t o r n []\n" +
+                " []                                      []\n" +
+                " []                                      []\n" +
+                "[][][][][][][][][][][][][][][][][][][][][][]\n");
+        delayTimer(1);
+        start();
+    }
+ */

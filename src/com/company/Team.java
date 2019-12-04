@@ -13,7 +13,6 @@ public class Team {
     private int wins;
     private int ties;
     private int points;
-    //private boolean hasPossession = false;
 
     //private TeamStats teamStats = new TeamStats();
     private ArrayList<Player> team;
@@ -35,11 +34,5 @@ public class Team {
     public ArrayList<Player> getTeam() {
         return team;
     }
-
-    /*
-    public boolean isHasPossession() { return hasPossession; }
-    public void setHasPossession(boolean hasPossession) { this.hasPossession = hasPossession; }
-    public TeamStats getTeamStats(){ return teamStats; }
-     */
 
 }
