@@ -67,6 +67,7 @@ public class PlayerFactory {
         tempTeam.add(new Goalkeeper(createName(), 1, 0, 0, random.nextInt(80), random.nextInt(50) + 50));
         return tempTeam;
     }
+
     /*
     public static LeagueTable createLeague() {
         int teamNr = 0;
