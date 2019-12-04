@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public class TeamStats {
 
-    private int points;
-    private int wins;
-    private int losses;
-    private int ties;
-    private int goalScored;
-    private int goalsConceded;
-    private int goalDifference;
-    private int playedMatches;
+    private int points = 0;
+    private int wins = 0;
+    private int losses = 0;
+    private int ties = 0;
+    private int goalScored = 0;
+    private int goalsConceded = 0;
+    private int goalDifference = 0;
+    private int playedMatches = 0;
 
     private ArrayList<String> summaryOfLastGamesStats = new ArrayList<>();
 
