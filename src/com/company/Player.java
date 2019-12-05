@@ -3,7 +3,7 @@ package com.company;
 import java.util.Random;
 
 public abstract class Player {
-    Test
+
     Random random = new Random();
     private String name;
     protected int currentPosition;
@@ -31,6 +31,14 @@ public abstract class Player {
     }
 
     public abstract int getAction(Team opposingTeam, Team ownTeam, int gameAction);
+
+    public PlayerStats getPlayerStats(){
+        return playerStats;
+    }
+
+    public void setHasTheBall(boolean hasTheBall){
+        this.hasTheBall = hasTheBall;
+    }
 
     public void tryToPass(Team ownTeam, Team opposingTeam){
         int attemptedPass = random.nextInt(passingAbility - 19) + 20;
@@ -133,12 +141,9 @@ public abstract class Player {
 
     public void tryToDribble(Team ownTeam, Team opposingTeam, int gameAction){
         int attemptedDribble = random.nextInt(dribblingAbility - 19) + 20;
-
         String oppositePos = "";
         Player opposingPlayer = null;
-
         String highlight;
-
         switch (position){
             case "LB":
                 oppositePos = "RM";
@@ -234,14 +239,6 @@ public abstract class Player {
 
     public String toString(){
         return position + ": " + name;
-    }
-
-    public PlayerStats getPlayerStats(){
-        return playerStats;
-    }
-
-    public void setHasTheBall(boolean hasTheBall){
-        this.hasTheBall = hasTheBall;
     }
 
 }
