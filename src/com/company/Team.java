@@ -13,17 +13,27 @@ public class Team {
     private int wins;
     private int ties;
     private int points;
+    private boolean hasPossession = false;
+    private boolean hasTheBall = false;
 
-    //private TeamStats teamStats = new TeamStats();
     private ArrayList<Player> team;
     private TeamStats teamStats = new TeamStats();
-
-
 
     public Team( String teamName, ArrayList<Player> team) {
         this.teamName = teamName;
         this.team = team;
     }
+
+    public boolean isHasPossession() { return hasPossession; }
+
+    public void setHasTheBall(boolean hasTheBallOrNot ){
+        hasTheBall = hasTheBallOrNot;
+    }
+
+    public void setHasPossession(boolean hasPossessionOrNot){
+        hasPossession = hasPossessionOrNot;
+    }
+
 
     public int getPoints() {
         return points;
