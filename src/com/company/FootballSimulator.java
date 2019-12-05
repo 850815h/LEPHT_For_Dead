@@ -54,7 +54,16 @@ public class FootballSimulator {
 
             switch (userMenuSelectionChoise) {
                 case 1:
-                    playMatch();
+                    playMatch(leagueTable.getLeague().get(matchOrder.get(matchNr)[0]), leagueTable.getLeague().get(matchOrder.get(matchNr)[1]));
+                    matchNr++;
+                    if (matchNr == 28){
+                        System.out.println("Ligan är färdigspelad för säsongen!");
+                        System.out.println("Ligatabellen slutade såhär:\n");
+                        showLeagueTable();
+                        System.out.println("\nTryck på ENTER för att avsluta FotbollsSimulatorn!");
+                        scanner.nextLine();
+                        System.exit(0);
+                    }
                     break;
                 case 2:
                     showLeagueTable();
