@@ -19,8 +19,8 @@ public class FootballSimulator {
         leagueTable = PlayerFactory.createLeague();
         matchOrder = leagueTable.createMatchOrder();
         matchNr = 0;
-        welcomeMessage(0.6);
-        //start();
+        //welcomeMessage(0.6); //Welcome-meddelande, so vi kan använda sen när allt är klart!
+        start();
     }
 
     private void start() throws InterruptedException {
@@ -104,7 +104,7 @@ public class FootballSimulator {
         do {
             if (team1.isHasPossession()) {
                 for (Player player : team1.getTeam()) {
-                    if (player.getHasTheBall()) {
+                    if (player.hasTheBall) {
                         goalOrNot = player.getAction(team1, team2,gameActions);
                         if (goalOrNot == 1) {
                             homeScore++;
@@ -117,7 +117,7 @@ public class FootballSimulator {
                 }
             } else if (team2.isHasPossession()) {
                 for (Player player : team2.getTeam()) {
-                    if (player.getHasTheBall()) {
+                    if (player.hasTheBall) {
                         goalOrNot = player.getAction(team2, team1,gameActions);
                         if (goalOrNot == 1) {
                             awayScore++;
