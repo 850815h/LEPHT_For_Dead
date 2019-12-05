@@ -1,14 +1,16 @@
 package com.company;
 
 public class Forward extends Player {
-    private int shooting;
-
-    public Forward(String name, int speed, int dribbling, int passing, int breaking, int shooting) {
-        super(name, speed, dribbling, passing, breaking);
-        this.shooting = shooting;
+    public Forward(String name, int speed, int dribblingAbility, int breakingAbility, int passingAbility, String position, int shootingAbility, String teamName) {
+        super(name, speed, dribblingAbility, breakingAbility, passingAbility, position, shootingAbility, teamName);
+        currentPosition = 3;
+        originalPosition = 3;
     }
 
-    public int getShooting(){
-        return shooting;
+    @Override
+    public int getAction(Team ownTeam, Team opposingTeam, int gameAction) {
+        if (tryToShoot(ownTeam, opposingTeam, gameAction)) {
+            return 1;
+        } else return 0;
     }
 }
