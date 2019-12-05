@@ -54,7 +54,7 @@ public class FootballSimulator {
 
             switch (userMenuSelectionChoise) {
                 case 1:
-                    playMatch();
+                    //playMatch();
                     break;
                 case 2:
                     showLeagueTable();
@@ -93,7 +93,7 @@ public class FootballSimulator {
         do {
             if (team1.isHasPossession()) {
                 for (Player player : team1.getTeam()) {
-                    if (player.hasTheBall) {
+                    if (player.getHasTheBall()) {
                         goalOrNot = player.getAction(team1, team2,gameActions);
                         if (goalOrNot == 1) {
                             homeScore++;
@@ -106,7 +106,7 @@ public class FootballSimulator {
                 }
             } else if (team2.isHasPossession()) {
                 for (Player player : team2.getTeam()) {
-                    if (player.hasTheBall) {
+                    if (player.getHasTheBall()) {
                         goalOrNot = player.getAction(team2, team1,gameActions);
                         if (goalOrNot == 1) {
                             awayScore++;
