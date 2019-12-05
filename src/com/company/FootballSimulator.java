@@ -15,14 +15,13 @@ public class FootballSimulator {
     private int actionAmount = 150;
     private int matchNr;
 
-    public FootballSimulator() throws InterruptedException {
+    public FootballSimulator(){
         leagueTable = PlayerFactory.createLeague();
         matchOrder = leagueTable.createMatchOrder();
         matchNr = 0;
-        start();
     }
 
-    private void start() throws InterruptedException {
+    public void start() throws InterruptedException {
 
         int userMenuSelectionChoice;
         do {

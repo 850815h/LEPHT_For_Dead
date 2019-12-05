@@ -178,7 +178,7 @@ public abstract class Player {
                 currentPosition+=2;
                 highlight = "Händelse nr " + gameAction + ", " + ownTeam + ": " + this + " gör en helt otrolig dribbling och springer fram två positioner!\n";
                 FootballSimulator.highlights.add(highlight);
-                System.out.println(highlight);
+                System.out.println(ownTeam + ": " + this + " gör en helt otrolig dribbling och springer fram två positioner!\n");
             } else {
                 currentPosition++;
                 System.out.println(ownTeam + ": " + this + " gör en supersnygg dribbling och tar sig förbi " + opposingTeam + ": " + opposingPlayer + "!\n");
@@ -211,14 +211,14 @@ public abstract class Player {
         }
         if (attemptedShot >= random.nextInt(opposingPlayer.savingAbility - 19) + 20){
             highlight = "Händelse nr " + gameAction + ", " + ownTeam + ": " + this + " gör MÅÅÅÅÅÅÅÅL!!!\n";
-            System.out.println(highlight);
+            System.out.println(ownTeam + ": " + this + " gör MÅÅÅÅÅÅÅÅL!!!\n");
             FootballSimulator.highlights.add(highlight);
             playerStats.addGoalsScored();
             goalOrNot = true;
             opposingTeam.getTeam().get(6).hasTheBall = true;
         } else {
             highlight = "Händelse nr " + gameAction + ", " + ownTeam + ": " + this + " skjuter mot mål!! Ett snyggt försök, men målvakten räddar!\n";
-            System.out.println(highlight);
+            System.out.println(ownTeam + ": " + this + " skjuter mot mål!! Ett snyggt försök, men målvakten räddar!\n");
             FootballSimulator.highlights.add(highlight);
             System.out.println(opposingTeam + " har nu bollen!\n");
             opposingPlayer.hasTheBall = true;
