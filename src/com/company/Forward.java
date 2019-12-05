@@ -13,4 +13,9 @@ public class Forward extends Player {
             return 1;
         } else return 0;
     }
+
+    @Override
+    public int getAction(Team ownTeam, Team opposingTeam, int gameAction) {
+        return 0;
+    }
 }
