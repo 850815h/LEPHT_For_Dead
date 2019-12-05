@@ -11,8 +11,8 @@ public class FootballSimulator {
     private LeagueTable leagueTable;
     public static ArrayList<String> highlights = new ArrayList<>();
     private ArrayList<int[]> matchOrder;
-    private int matchTimeSpeed = 0;
-    private int actionAmount = 10;
+    private int matchTimeSpeed = 1000;
+    private int actionAmount = 150;
     private int matchNr;
 
     public FootballSimulator() throws InterruptedException {
@@ -110,7 +110,7 @@ public class FootballSimulator {
                         goalOrNot = player.getAction(team1, team2,gameActions);
                         if (goalOrNot == 1) {
                             homeScore++;
-                            //thread.sleep(2000);
+                            thread.sleep(2000);
                             System.out.println("Ställningen är " + homeScore + " : " + awayScore);
                             System.out.println(team2.getTeam().get(6) + " tar avsparken!\n");
                         }
@@ -123,7 +123,7 @@ public class FootballSimulator {
                         goalOrNot = player.getAction(team2, team1,gameActions);
                         if (goalOrNot == 1) {
                             awayScore++;
-                            //thread.sleep(2000);
+                            thread.sleep(2000);
                             System.out.println("Ställningen är " + homeScore + " : " + awayScore);
                             System.out.println(team1.getTeam().get(6) + " tar avsparken!\n");
                         }
