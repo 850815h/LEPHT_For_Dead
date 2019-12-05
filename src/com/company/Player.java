@@ -5,39 +5,35 @@ import java.util.Random;
 public abstract class Player {
 
     Random random = new Random();
+    private PlayerStats playerStats;
+
     private String name;
+    private String teamName;
+    protected String position;
+
     protected int currentPosition;
     protected int originalPosition;
     protected boolean hasTheBall = false;
-    protected String position;
+
     private int speed;
     private int passingAbility;
     private int dribblingAbility;
     private int shootingAbility;
     private int breakingAbility;
-    protected int savingAbility;
-    private PlayerStats playerStats;
 
-    public Player(String name, int savingAbility, int speed, int dribblingAbility, int breakingAbility, int passingAbility, String position, int shootingAbility) {
+    protected int savingAbility;
+
+
+    public Player(String name, int speed, int dribblingAbility, int breakingAbility, int passingAbility, String position, int shootingAbility, String teamName) {
         this.name = name;
+        this.teamName = teamName;
         this.position = position;
         this.speed = speed;
         this.passingAbility = passingAbility;
         this.shootingAbility = shootingAbility;
         this.dribblingAbility = dribblingAbility;
         this.breakingAbility = breakingAbility;
-        this.savingAbility = savingAbility;
         this.playerStats = new PlayerStats(this);
-    }
-
-    public abstract int getAction(Team opposingTeam, Team ownTeam, int gameAction);
-
-    public PlayerStats getPlayerStats(){
-        return playerStats;
-    }
-
-    public void setHasTheBall(boolean hasTheBall){
-        this.hasTheBall = hasTheBall;
     }
 
     public void tryToPass(Team ownTeam, Team opposingTeam){
@@ -241,4 +237,34 @@ public abstract class Player {
         return position + ": " + name;
     }
 
+    public void printStats(){
+        String lengthCheck = position + ": " + name;
+        while (lengthCheck.length() < 30){
+            lengthCheck += " ";
+        }
+        System.out.print(lengthCheck);
+        System.out.println(playerStats);
+    }
+
+    public abstract int getAction(Team opposingTeam, Team ownTeam, int gameAction);
+
+    public PlayerStats getPlayerStats(){
+        return playerStats;
+    }
+
+    public void setHasTheBall(boolean hasTheBall){
+        this.hasTheBall = hasTheBall;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public boolean isHasTheBall() {
+        return hasTheBall;
+    }
+
+    public String getName(){
+        return name;
+    }
 }
