@@ -5,28 +5,30 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class FootballSimulator {
+    private Random random = new Random();
     private Scanner scanner = new Scanner(System.in);
     private Thread thread = new Thread();
     private LeagueTable leagueTable;
     public static ArrayList<String> highlights = new ArrayList<>();
     private ArrayList<int[]> matchOrder;
-    int matchTimeSpeed = 1000;
-    int actionAmount = 150;
-    int matchNr;
-    Random random = new Random();
+    private int matchTimeSpeed = 1000;
+    private int actionAmount = 150;
+    private int matchNr;
 
-    public FootballSimulator() {
+    public FootballSimulator() throws InterruptedException {
         leagueTable = PlayerFactory.createLeague();
         matchOrder = leagueTable.createMatchOrder();
         matchNr = 0;
+        //welcomeMessage(0.6); //Welcome-meddelande, so vi kan använda sen när allt är klart!
         start();
     }
 
-    private void start() /*throws InterruptedException*/ {
+    private void start() throws InterruptedException {
 
         int userMenuSelectionChoise;
         do {
-            System.out.printf("[][][][][][][][][][][][][][][][][][][][][][]\n" +
+            System.out.printf(
+                    "[][][][][][][][][][][][][][][][][][][][][][]\n" +
                     "[]  F o t b o l l s  S i m u l a t o r n  []\n" +
                     "[]                                        []\n" +
                     "[]  Vänligen välj ett alternativ (0-5):   []\n" +
@@ -102,7 +104,7 @@ public class FootballSimulator {
         do {
             if (team1.isHasPossession()) {
                 for (Player player : team1.getTeam()) {
-                    if (player.getHasTheBall()) {
+                    if (player.hasTheBall) {
                         goalOrNot = player.getAction(team1, team2,gameActions);
                         if (goalOrNot == 1) {
                             homeScore++;
@@ -115,7 +117,7 @@ public class FootballSimulator {
                 }
             } else if (team2.isHasPossession()) {
                 for (Player player : team2.getTeam()) {
-                    if (player.getHasTheBall()) {
+                    if (player.hasTheBall) {
                         goalOrNot = player.getAction(team2, team1,gameActions);
                         if (goalOrNot == 1) {
                             awayScore++;
@@ -262,9 +264,37 @@ public class FootballSimulator {
 
     }
 
+    private void exitProgram() {
+        System.exit(0);
+    }
+
+    private void welcomeMessage(double welcomeMessageSpeed) throws InterruptedException {
+
+        String menuString = " [][][][][][][][][][][][][][][][][][][][][] +\n"+
+                "[][][][][][][][][][][][][][][][][][][][][][] \n"+
+                " []                                      [] \n"+
+                " []     V  Ä  L  K  K  O  M  M  E  N     [] \n"+
+                " []               T  I  L  L             [] \n"+
+                " []                                      [] \n"+
+                " [] F o t b o l l s  S i m u l a t o r n [] \n"+
+                " []                                      [] \n"+
+                " []                                      [] \n"+
+                "[][][][][][][][][][][][][][][][][][][][][][]  \n";
+
+        String[] parts = menuString.split("");
+
+        for( int i = 0 ; i < parts.length ; i++) {
+            int randomNumber = (int)(Math.random()*parts.length);
+            delayTimer(.01);
+            System.out.print(parts[randomNumber] );
+        }
+
+        delayTimer(1);
+        start();
+    }
+
     private void delayTimer(double howManySeconds) {
         double wholeSeconds = howManySeconds * 1000;
-
         try {
             thread.sleep((long) wholeSeconds);
         } catch (Exception e) {
@@ -272,27 +302,5 @@ public class FootballSimulator {
         }
     }
 
-    private void exitProgram() {
-        System.exit(0);
-    }
-
 
 }
-
-/*
-private void welcomeMessage(){
-        System.out.printf(
-                " [][][][][][][][][][][][][][][][][][][][][]\n" +
-                "[][][][][][][][][][][][][][][][][][][][][][]\n" +
-                " []                                      []\n" +
-                " []     V  Ä  L  K  K  O  M  M  E  N     []\n" +
-                " []               T  I  L  L             []\n" +
-                " []                                      []\n" +
-                " [] F o t b o l l s  S i m u l a t o r n []\n" +
-                " []                                      []\n" +
-                " []                                      []\n" +
-                "[][][][][][][][][][][][][][][][][][][][][][]\n");
-        delayTimer(1);
-        start();
-    }
- */
