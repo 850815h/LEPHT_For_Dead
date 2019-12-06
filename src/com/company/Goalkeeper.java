@@ -7,12 +7,9 @@ public class Goalkeeper extends Player{
         this.savingAbility = savingAbility;
     }
 
-    public int getSavingAbility() {
-        return savingAbility;
-    }
-
     @Override
-    public int getAction(Team opposingTeam, Team ownTeam, int gameAction) {
+    public int getAction(Team ownTeam, Team opposingTeam, int gameAction) {
+        tryToPass(ownTeam, opposingTeam);
         return 0;
     }
 }

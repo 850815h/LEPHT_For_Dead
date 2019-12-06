@@ -2,8 +2,8 @@ package com.company;
 
 public class Defender extends Player {
 
-    public Defender(String name, String teamName, int speed, int dribblingAbility, int passingAbility, int breakingAbility, String position) {
-        super(name, speed, dribblingAbility, breakingAbility, passingAbility, position, teamName);
+    public Defender(String name, int speed, int dribblingAbility, int breakingAbility, int passingAbility, String position, int shootingAbility, String teamName) {
+        super(name, speed, dribblingAbility, breakingAbility, passingAbility, position, shootingAbility, teamName);
         originalPosition = 1;
         currentPosition = 1;
     }

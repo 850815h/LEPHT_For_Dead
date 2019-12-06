@@ -5,39 +5,35 @@ import java.util.Random;
 public abstract class Player {
 
     Random random = new Random();
+    private PlayerStats playerStats;
+
     private String name;
+    private String teamName;
+    protected String position;
+
     protected int currentPosition;
     protected int originalPosition;
     protected boolean hasTheBall = false;
-    protected String position;
+
     private int speed;
     private int passingAbility;
     private int dribblingAbility;
     private int shootingAbility;
     private int breakingAbility;
-    protected int savingAbility;
-    private PlayerStats playerStats;
 
-    public Player(String name, int savingAbility, int speed, int dribblingAbility, int breakingAbility, int passingAbility, String position, int shootingAbility) {
+    protected int savingAbility;
+
+
+    public Player(String name, int speed, int dribblingAbility, int breakingAbility, int passingAbility, String position, int shootingAbility, String teamName) {
         this.name = name;
+        this.teamName = teamName;
         this.position = position;
         this.speed = speed;
         this.passingAbility = passingAbility;
         this.shootingAbility = shootingAbility;
         this.dribblingAbility = dribblingAbility;
         this.breakingAbility = breakingAbility;
-        this.savingAbility = savingAbility;
         this.playerStats = new PlayerStats(this);
-    }
-
-    public abstract int getAction(Team opposingTeam, Team ownTeam, int gameAction);
-
-    public PlayerStats getPlayerStats(){
-        return playerStats;
-    }
-
-    public void setHasTheBall(boolean hasTheBall){
-        this.hasTheBall = hasTheBall;
     }
 
     public void tryToPass(Team ownTeam, Team opposingTeam){
@@ -182,7 +178,7 @@ public abstract class Player {
                 currentPosition+=2;
                 highlight = "Händelse nr " + gameAction + ", " + ownTeam + ": " + this + " gör en helt otrolig dribbling och springer fram två positioner!\n";
                 FootballSimulator.highlights.add(highlight);
-                System.out.println(highlight);
+                System.out.println(ownTeam + ": " + this + " gör en helt otrolig dribbling och springer fram två positioner!\n");
             } else {
                 currentPosition++;
                 System.out.println(ownTeam + ": " + this + " gör en supersnygg dribbling och tar sig förbi " + opposingTeam + ": " + opposingPlayer + "!\n");
@@ -215,14 +211,14 @@ public abstract class Player {
         }
         if (attemptedShot >= random.nextInt(opposingPlayer.savingAbility - 19) + 20){
             highlight = "Händelse nr " + gameAction + ", " + ownTeam + ": " + this + " gör MÅÅÅÅÅÅÅÅL!!!\n";
-            System.out.println(highlight);
+            System.out.println(ownTeam + ": " + this + " gör MÅÅÅÅÅÅÅÅL!!!\n");
             FootballSimulator.highlights.add(highlight);
             playerStats.addGoalsScored();
             goalOrNot = true;
             opposingTeam.getTeam().get(6).hasTheBall = true;
         } else {
             highlight = "Händelse nr " + gameAction + ", " + ownTeam + ": " + this + " skjuter mot mål!! Ett snyggt försök, men målvakten räddar!\n";
-            System.out.println(highlight);
+            System.out.println(ownTeam + ": " + this + " skjuter mot mål!! Ett snyggt försök, men målvakten räddar!\n");
             FootballSimulator.highlights.add(highlight);
             System.out.println(opposingTeam + " har nu bollen!\n");
             opposingPlayer.hasTheBall = true;
@@ -241,4 +237,34 @@ public abstract class Player {
         return position + ": " + name;
     }
 
+    public void printStats(){
+        String lengthCheck = position + ": " + name;
+        while (lengthCheck.length() < 30){
+            lengthCheck += " ";
+        }
+        System.out.print(lengthCheck);
+        System.out.println(playerStats);
+    }
+
+    public abstract int getAction(Team opposingTeam, Team ownTeam, int gameAction);
+
+    public PlayerStats getPlayerStats(){
+        return playerStats;
+    }
+
+    public void setHasTheBall(boolean hasTheBall){
+        this.hasTheBall = hasTheBall;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public boolean isHasTheBall() {
+        return hasTheBall;
+    }
+
+    public String getName(){
+        return name;
+    }
 }

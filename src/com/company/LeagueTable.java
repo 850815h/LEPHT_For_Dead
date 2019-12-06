@@ -8,7 +8,6 @@ public class LeagueTable {
     private ArrayList<Team> league;
 
     public LeagueTable(ArrayList<Team> league){
-
         this.league = league;
     }
 
@@ -77,6 +76,17 @@ public class LeagueTable {
 
     public ArrayList<Team> getLeague(){
         return league;
+    }
+
+    public void returnToRightOrder() {
+        league.sort((Team t1, Team t2) -> {
+                    if (t1.getStartingPlace() < t2.getStartingPlace())
+                        return -1;
+                    else if (t1.getStartingPlace() > t2.getStartingPlace())
+                        return 1;
+                    return 0;
+                }
+        );
     }
 
     public void sortByPoints(){

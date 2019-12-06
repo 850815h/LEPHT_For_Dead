@@ -81,11 +81,11 @@ public class PlayerStats {
 
     public String toString() {
         for (String string : summaryPercentage) {
-            System.out.println(string);
+            System.out.print(string);
         }
         return "";
     }
-    public float getGoalScored() {
+    public float getGoalsScored() {
         return goalScored;
     }
     public void addSuccessfulDribble() {
