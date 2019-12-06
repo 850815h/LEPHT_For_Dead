@@ -15,17 +15,15 @@ public class FootballSimulator {
     private int actionAmount = 150;
     private int matchNr;
 
-    public FootballSimulator() throws InterruptedException {
+    public FootballSimulator(){
         leagueTable = PlayerFactory.createLeague();
         matchOrder = leagueTable.createMatchOrder();
         matchNr = 0;
-        //welcomeMessage(0.6); //Welcome-meddelande, so vi kan använda sen när allt är klart!
-        start();
     }
 
-    private void start() throws InterruptedException {
+    public void start() throws InterruptedException {
 
-        int userMenuSelectionChoise;
+        int userMenuSelectionChoice;
         do {
             System.out.printf(
                     "[][][][][][][][][][][][][][][][][][][][][][]\n" +
@@ -44,8 +42,8 @@ public class FootballSimulator {
 
             do {
                 try {
-                    userMenuSelectionChoise = Integer.parseInt(scanner.nextLine());
-                    if (userMenuSelectionChoise < 0 || userMenuSelectionChoise > 5) {
+                    userMenuSelectionChoice = Integer.parseInt(scanner.nextLine());
+                    if (userMenuSelectionChoice < 0 || userMenuSelectionChoice > 5) {
                         throw new IndexOutOfBoundsException();
                     }
                     break;
@@ -54,17 +52,20 @@ public class FootballSimulator {
                 }
             } while (true);
 
-            switch (userMenuSelectionChoise) {
+            switch (userMenuSelectionChoice) {
                 case 1:
-                    playMatch(leagueTable.getLeague().get(matchOrder.get(matchNr)[0]), leagueTable.getLeague().get(matchOrder.get(matchNr)[1]));
-                    matchNr++;
+                    if(matchNr < 28) {
+                        leagueTable.returnToRightOrder();
+                        playMatch(leagueTable.getLeague().get(matchOrder.get(matchNr)[0]), leagueTable.getLeague().get(matchOrder.get(matchNr)[1]));
+                        matchNr++;
+                    } else {
+                        System.out.println("Ligan är färdigspelad! Det finns inga matcher kvar!");
+                        break;
+                    }
                     if (matchNr == 28){
                         System.out.println("Ligan är färdigspelad för säsongen!");
                         System.out.println("Ligatabellen slutade såhär:\n");
                         showLeagueTable();
-                        System.out.println("\nTryck på ENTER för att avsluta FotbollsSimulatorn!");
-                        scanner.nextLine();
-                        System.exit(0);
                     }
                     break;
                 case 2:
@@ -104,11 +105,11 @@ public class FootballSimulator {
         do {
             if (team1.isHasPossession()) {
                 for (Player player : team1.getTeam()) {
-                    if (player.hasTheBall) {
+                    if (player.isHasTheBall()) {
                         goalOrNot = player.getAction(team1, team2,gameActions);
                         if (goalOrNot == 1) {
                             homeScore++;
-                            //thread.sleep(2000);
+                            thread.sleep(2000);
                             System.out.println("Ställningen är " + homeScore + " : " + awayScore);
                             System.out.println(team2.getTeam().get(6) + " tar avsparken!\n");
                         }
@@ -117,11 +118,11 @@ public class FootballSimulator {
                 }
             } else if (team2.isHasPossession()) {
                 for (Player player : team2.getTeam()) {
-                    if (player.hasTheBall) {
+                    if (player.isHasTheBall()) {
                         goalOrNot = player.getAction(team2, team1,gameActions);
                         if (goalOrNot == 1) {
                             awayScore++;
-                            //thread.sleep(2000);
+                            thread.sleep(2000);
                             System.out.println("Ställningen är " + homeScore + " : " + awayScore);
                             System.out.println(team1.getTeam().get(6) + " tar avsparken!\n");
                         }
@@ -180,9 +181,41 @@ public class FootballSimulator {
     }
 
     private void showLeagueTable() {
+        int selection;
+        leagueTable.showLeagueTable(1);
+
+        do {
+            System.out.println("\nSortera tabellen efter:\n");
+            System.out.println("1. Poäng");
+            System.out.println("2. Målskillnad");
+            System.out.println("3. Gjorda mål");
+            System.out.println("4. Insläppta mål");
+            System.out.println("5. Vinster");
+            System.out.println("6. Förluster");
+            System.out.println("7. Oavgjorda");
+            System.out.println("8. Spelade matcher");
+            System.out.println("\n0. Gå tillbaka");
+            do {
+                try {
+                    selection = Integer.parseInt(scanner.nextLine());
+                    if (selection < 0 || selection > 8) {
+                        throw new IndexOutOfBoundsException();
+                    }
+                    break;
+                } catch (Exception e) {
+                    System.out.println("Vänligen ange ett giltigt alternativ!");
+                }
+            } while (true);
+
+            if (selection == 0) {
+                return;
+            }
+
+            leagueTable.showLeagueTable(selection);
+        }while (true);
     }
 
-    public void showPlayerStats() {
+    private void showPlayerStats() {
         System.out.printf(
                 "[][][][][][][][][][][][][][][][][][][][][][]\n" +
                         "[][][] S P E L A R  S T A T I S T I K [][][]\n");
@@ -213,42 +246,42 @@ public class FootballSimulator {
         switch (selection) {
             case 1:
                 for (Player player : leagueTable.getLeague().get(0).getTeam()) {
-                    player.getPrintStats();
+                    player.printStats();
                 }
                 break;
             case 2:
                 for (Player player : leagueTable.getLeague().get(1).getTeam()) {
-                    player.getPrintStats();
+                    player.printStats();
                 }
                 break;
             case 3:
                 for (Player player : leagueTable.getLeague().get(2).getTeam()) {
-                    player.getPrintStats();
+                    player.printStats();
                 }
                 break;
             case 4:
                 for (Player player : leagueTable.getLeague().get(3).getTeam()) {
-                    player.getPrintStats();
+                    player.printStats();
                 }
                 break;
             case 5:
                 for (Player player : leagueTable.getLeague().get(4).getTeam()) {
-                    player.getPrintStats();
+                    player.printStats();
                 }
                 break;
             case 6:
                 for (Player player : leagueTable.getLeague().get(5).getTeam()) {
-                    player.getPrintStats();
+                    player.printStats();
                 }
                 break;
             case 7:
                 for (Player player : leagueTable.getLeague().get(6).getTeam()) {
-                    player.getPrintStats();
+                    player.printStats();
                 }
                 break;
             case 8:
                 for (Player player : leagueTable.getLeague().get(7).getTeam()) {
-                    player.getPrintStats();
+                    player.printStats();
                 }
                 break;
             case 0:
@@ -256,51 +289,65 @@ public class FootballSimulator {
         }
     }
 
-    public void changeSettings() {
-
-    }
-
     public void showTopScorers() {
-
+        ScoringLeague scoringLeague = new ScoringLeague(leagueTable);
+        scoringLeague.showTopScorers();
     }
 
-    private void exitProgram() {
-        System.exit(0);
-    }
+    public void changeSettings() {
+        int matchSpeed;
+        int actions;
+        int selection;
 
-    private void welcomeMessage(double welcomeMessageSpeed) throws InterruptedException {
+        System.out.println("Vänligen ange ett alternativ (0-2):\n");
+        System.out.println("1. Ändra action-hastighet");
+        System.out.println("2. Ändra actions per match");
+        System.out.println("\n0. Gå tillbaka");
+        do {
+            try {
+                selection = Integer.parseInt(scanner.nextLine());
+                if (selection < 0 || selection > 2) {
+                    throw new IndexOutOfBoundsException();
+                }
+                break;
+            } catch (Exception e) {
+                System.out.println("Vänligen ange ett giltigt alternativ!");
+            }
+        } while (true);
 
-        String menuString = " [][][][][][][][][][][][][][][][][][][][][] +\n"+
-                "[][][][][][][][][][][][][][][][][][][][][][] \n"+
-                " []                                      [] \n"+
-                " []     V  Ä  L  K  K  O  M  M  E  N     [] \n"+
-                " []               T  I  L  L             [] \n"+
-                " []                                      [] \n"+
-                " [] F o t b o l l s  S i m u l a t o r n [] \n"+
-                " []                                      [] \n"+
-                " []                                      [] \n"+
-                "[][][][][][][][][][][][][][][][][][][][][][]  \n";
-
-        String[] parts = menuString.split("");
-
-        for( int i = 0 ; i < parts.length ; i++) {
-            int randomNumber = (int)(Math.random()*parts.length);
-            delayTimer(.01);
-            System.out.print(parts[randomNumber] );
+        switch (selection) {
+            case 1:
+                System.out.println("Ange önskad action-hastighet i ms (50-3000): ");
+                do {
+                    try {
+                        matchSpeed = Integer.parseInt(scanner.nextLine());
+                        if (matchSpeed < 50 || matchSpeed > 3000) {
+                            throw new IndexOutOfBoundsException();
+                        }
+                        this.matchTimeSpeed = matchSpeed;
+                        break;
+                    } catch (Exception e) {
+                        System.out.println("Vänligen ange ett giltigt alternativ!");
+                    }
+                } while (true);
+                changeSettings();
+                break;
+            case 2:
+                System.out.println("Ange önskade antal actions per match (60-200): ");
+                do {
+                    try {
+                        actions = Integer.parseInt(scanner.nextLine());
+                        if (actions < 60 || actions > 200) {
+                            throw new IndexOutOfBoundsException();
+                        }
+                        this.actionAmount = actions;
+                        break;
+                    } catch (Exception e) {
+                        System.out.println("Vänligen ange ett giltigt alternativ!");
+                    }
+                } while (true);
+                changeSettings();
+                break;
         }
-
-        delayTimer(1);
-        start();
     }
-
-    private void delayTimer(double howManySeconds) {
-        double wholeSeconds = howManySeconds * 1000;
-        try {
-            thread.sleep((long) wholeSeconds);
-        } catch (Exception e) {
-            System.out.println("TimeLeft");
-        }
-    }
-
-
 }

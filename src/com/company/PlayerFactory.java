@@ -12,8 +12,8 @@ public class PlayerFactory {
             , "Arnold", "Zlatan", "WonderWoman", "Betty Boop", "Khaleesi", "Kingslayer"};
     static String[] lastNames = {"McRib", "Steel", "Targaryan", "Stallone", "Armstrong", "Svensson", "Hussein", "Strong", "Schwarzenegger", "Stålnacke", "af von Knapp", "Terminator", "Jonsson", "BigMac",
             "Maradona", "Köttfärs", "Baba", "Beerpong", "Wordfeud", "Candy Crush", "Messi", "Ronaldo", "Ibrahimovic", "Silverhjelm", "Lingongrova"};
-    private static String[] playerPositions = {"LB", "LCB", "RCB", "RB", "LM", "LCM", "RCM", "RM", "LF", "RF"};
-    private static ArrayList<Team> teamList = new ArrayList<>();
+    static String[] playerPositions = {"LB", "LCB", "RCB", "RB", "LM", "LCM", "RCM", "RM", "LF", "RF"};
+    static ArrayList<Team> teamList = new ArrayList<>();
 
     public static String createName() {
         String first = firstNames[random.nextInt(firstNames.length)];
@@ -24,9 +24,9 @@ public class PlayerFactory {
 
     public static Defender createDefender(String playerPosition, String teamName) {
         int speed = random.nextInt(2) + 1;
-        int dribbling = random.nextInt(100);
-        int passing = random.nextInt(100);
-        int breaking = random.nextInt(100);
+        int dribbling = random.nextInt(30) + 20;
+        int passing = random.nextInt(60) + 20;
+        int breaking = random.nextInt(70) + 30;
         int shooting = random.nextInt(30) + 20;
         Defender tempDefender = new Defender(createName(), speed, dribbling, breaking, passing, playerPosition, shooting, teamName);
         return tempDefender;
@@ -76,26 +76,12 @@ public class PlayerFactory {
     public static LeagueTable createLeague(){
         int teamNr = 0;
         for (int i = 0; i < 8; i++){
-            Team tempTeam = new Team(teamNames[teamNr], createTeam(teamNames[teamNr]));
+            Team tempTeam = new Team(teamNames[teamNr], createTeam(teamNames[teamNr]), teamNr);
             teamList.add(tempTeam);
             teamNr++;
         }
-
         LeagueTable leagueTable = new LeagueTable(teamList);
         return leagueTable;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
